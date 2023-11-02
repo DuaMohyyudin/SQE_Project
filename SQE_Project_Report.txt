@@ -1,0 +1,37 @@
+Issue: Incorrect JDK Version
+Solution: Verify and ensure the correct JDK version is installed. Update the project settings in IntelliJ IDEA to use the correct JDK.
+
+Issue: Maven Project Configuration
+Solution: In IntelliJ IDEA, right-click on the project folder, navigate to "Add Framework Support" and select Maven. This will configure the project as a Maven project.
+
+Issue: Database Connection Errors
+Solution:
+Double-check the credentials in application.properties.
+Ensure the MySQL server is running on XAMPP or another local server.
+Verify that the port number and hostname are correctly configured.
+
+Issue: Failed Database Creation from basedata.sql
+Solution: Manually create the database in MySQL Workbench using the provided instructions in the README file.
+
+Issue: Incorrect Application Configuration
+Solution: Review and correct the database connection details in the application.properties file. Ensure the URL, username, and password are accurate.
+
+Issue: Connection Problems between MySQL Workbench and IntelliJ IDEA
+Solution:
+Check firewall settings to allow connections on the specified port.
+Ensure the MySQL server is properly configured to allow external connections.
+Confirm that the correct port and host are used in both MySQL Workbench and IntelliJ IDEA.
+
+Issue: Dependency Management Errors
+Solution: Make sure all necessary dependencies are listed in the pom.xml file. Use a valid version number for each dependency.
+
+Issue: Incorrect Database Path in application.properties
+Solution: Update the database path in the application.properties file to match the local configuration (e.g., change localhost to the correct IP address).
+
+Issue: Incompatible Software Versions
+Solution: Ensure that all software components (IDE, database, server, etc.) are compatible with each other. Check the project's documentation or community discussions for recommended versions.
+
+Issue: Unavailable localhost or Port Conflicts
+Solution:
+Verify that there are no other services using the same port.
+Restart the local server (e.g., XAMPP) to free up the port.
