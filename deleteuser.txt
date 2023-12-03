@@ -1,0 +1,62 @@
+
+UserController.java
+
+ @PostMapping("/deleteCustomer")
+    public String deleteCustomer(@RequestParam("userId") int userId) {
+        userService.deleteUser(userId);
+        return "redirect:/displayCustomer";
+    }
+
+
+UserDao.java
+@Transactional
+    public boolean deleteUser(int userId) {
+        try (Session session = this.sessionFactory.getCurrentSession()) {
+            User userToDelete = session.get(User.class, userId);
+
+            if (userToDelete != null) {
+                session.delete(userToDelete);
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception or handle it as appropriate
+        }
+        return false;
+    }
+
+UserService.java
+public boolean deleteUser(int userId) {
+        return this.userDao.deleteUser(userId);
+    }
+
+displayCustomer.jsp
+IMPLEMENTATION IN BODY TAG
+
+<div class="container-fluid">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="customer" items="${customers}">
+                    <tr>
+                        <td>${customer.username}</td>
+                        <td>${customer.email}</td>
+                        <td>${customer.address}</td>
+                        <td>
+                            <!-- Add your delete button with a form for each customer -->
+                            <form action="/deleteCustomer" method="post">
+                                <input type="hidden" name="userId" value="${customer.id}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
