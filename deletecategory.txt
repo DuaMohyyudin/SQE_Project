@@ -1,0 +1,29 @@
+
+CATEGORYDAO.java
+ @Transactional
+	public List<Category> getCategories() {
+		return this.sessionFactory.getCurrentSession().createQuery("from CATEGORY").list();
+	}
+
+	@Transactional
+	public boolean deleteCategory(int id) {
+		try (Session session = this.sessionFactory.getCurrentSession()) {
+			Category categoryToDelete = session.get(Category.class, id);
+
+			if (categoryToDelete != null) {
+				session.delete(categoryToDelete);
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); // Log the exception or handle it as appropriate
+		}
+		return false;
+	}
+
+
+
+CATEGORYSERVICE.java
+
+	public Boolean deleteCategory(int id) {
+		return this.categoryDao.deleteCategory(id);
+	}
